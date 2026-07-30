@@ -28,6 +28,8 @@ else {
 console.log("Total Marks =", total);
 console.log("Percentage =", percentage + "%");
 console.log("Grade =", grade);
+
+
 // 2. Electricity Bill Calculator
 let unit = 375;
 let finalprize = 0;
@@ -41,6 +43,8 @@ else {
     finalprize = unit * 5;
 }
 console.log(finalprize);
+
+
 // 3.simple interest
 let principal = 10000;
 let rate = 5;
@@ -49,6 +53,8 @@ let simpleInterest = (principal * rate * time) / 100;
 let totalAmount = principal + simpleInterest;
 console.log("Simple Interest =", simpleInterest);
 console.log("Total Amount =", totalAmount);
+
+
 // 4.gross salary
 let basicSalary = 30000;
 let hra = basicSalary * 20 / 100;
@@ -56,6 +62,8 @@ let da = basicSalary * 10 / 100;
 let ta = basicSalary * 5 / 100;
 let grossSalary = basicSalary + hra + da + ta;
 console.log("Gross Salary =", grossSalary);
+
+
 // 5. Swap Two Variables
 let a = 10;
 let b = 20;
@@ -65,6 +73,8 @@ a = b;
 temp = a;
 console.log("a =", a);
 console.log("b =", b);
+
+
 // 6. Employee Bonus Calculator
 let salary = 50000;
 let experience = 7;
@@ -81,11 +91,15 @@ else {
 }
 finalSalary = salary + bonus;
 console.log("Final Salary =", finalSalary);
+
+
 // 7. Temperature Converter
 let celsius = 24;
 let fahrenheit;
 fahrenheit = (celsius * 9 / 5) + 32;
 console.log("fahrenheit =", fahrenheit);
+
+
 // 8. Age Calculator
 let birthYear = 2005;
 let currentYear = 2026;
@@ -103,6 +117,8 @@ else if (age <= 59) {
 else {
     console.log("Senior Citizen");
 }
+
+
 // 9. Restaurant Bill
 let food = 800;
 let gst = food * 5 / 100;
@@ -112,6 +128,8 @@ console.log("Food Bill = ₹" + food);
 console.log("GST = ₹" + gst);
 console.log("Service Charge = ₹" + serviceCharge);
 console.log("Final Bill = ₹" + finalBill);
+
+
 // 10. Profit or Loss
 let costPrice = 5000;
 let sellingPrice = 15000;
@@ -130,6 +148,8 @@ else if (costPrice > sellingPrice) {
 else {
     console.log("No Profit No Loss");
 }
+
+
 // 11. Loan EMI Calculation
 let P = 500000;
 let R = 8.5;
@@ -137,6 +157,8 @@ let N = 60;
 let monthlyRate = R / 12 / 100;
 let emi = (P * monthlyRate * (1 + monthlyRate) ** N) / ((1 + monthlyRate) ** N - 1);
 console.log("Monthly EMI: ₹" + emi.toFixed(2));
+
+
 // 12. Salary Deduction
 let basicSalary = 20000;
 let pf = basicSalary * (12 / 100);
@@ -146,6 +168,8 @@ let totalDeductions = pf + tax + insurance;
 let netSalary = basicSalary - totalDeductions;
 console.log("Total Deductions = ₹" + totalDeductions);
 console.log("Net Salary = ₹" + netSalary);
+
+
 // 13. Currency Conversion
 let inr = 10000;
 let conversionRate = 85;
@@ -153,6 +177,8 @@ let usd = inr / conversionRate;
 console.log("Amount in INR = ₹" + inr);
 console.log("Conversion Rate = " + conversionRate);
 console.log("Converted Amount in USD = $" + usd.toFixed(2));
+
+
 // 14. Three-Number Calculator
 let num1 = 10;
 let num2 = 20;
@@ -183,6 +209,8 @@ console.log("Sum = " + sum);
 console.log("Average = " + average);
 console.log("Largest Number = " + largest);
 console.log("Smallest Number = " + smallest);
+
+
 // 15. Attendance Eligibility
 let totalWorkingDays = 120;
 let daysAttended = 95;
@@ -196,6 +224,8 @@ if (attendance >= 75) {
 else {
     console.log("Not Eligible");
 }
+
+
 // 16. Parking Fee Calculator
 let hours = 7;
 let fee = 0;
@@ -210,6 +240,8 @@ else {
 }
 console.log("Parking Hours = " + hours);
 console.log("Total Parking Fee = ₹" + fee);
+
+
 // 17. Product Discount
 let price = 6000;
 let isMember = true;
@@ -233,6 +265,8 @@ else {
 }
 console.log("Total Discount = ₹" + discount);
 console.log("Final Price = ₹" + finalPrice);
+
+
 // 18. Employee Salary with Performance
 let basicSalary = 50000;
 let rating = 4;
@@ -254,6 +288,8 @@ else {
 }
 let finalSalary = basicSalary + bonus;
 console.log("Final Salary = ₹" + finalSalary);
+
+
 //19. School Fee Calculator
 let tuitionFee = 20000;
 let libraryFee = 2000;
@@ -274,6 +310,8 @@ else {
     console.log("Scholarship = ₹0");
 }
 console.log("Final Fee = ₹" + finalFee);
+
+
 // 20. Water Bill Calculator
 let litre = 600;
 let bill = 0;
