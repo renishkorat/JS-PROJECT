@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SLIDER</title>
+    <style>
+        .slider {
+            width: 600px;
+            height: 350px;
+            margin: 50px auto;
+            position: relative;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        #sliderImage {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .slider button {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+
+            width: 45px;
+            height: 55px;
+            background-color: rgba(0, 0, 0, 0.5);
+
+            border: none;
+
+            color: white;
+
+
+
+            transition: 0.3s;
+        }
+
+        .slider button:first-of-type {
+            left: 10px;
+        }
+
+        .slider button:last-of-type {
+            right: 10px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="slider">
+        <img id="sliderImage" src="img1.jpg" alt="Image">
+
+        <button onclick="prevImage()">❮</button>
+        <button onclick="nextImage()">❯</button>
+    </div>
+
+    <script>
+        let images = [
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7zDMYnGheNT1l7pEW3R5N3Uf4--yCjRprCG9W5WQ58g&s=10",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBB4LQTn0vRq4ydPLp-uTj_lEUHOHYWUU18JlCq5KuMw&s=10",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzJiL2savWoGa11xgA0dE_0XjhbdeZokBLo_dScmZJKg&s=10",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRK70xz2OiH6prn3ULE1A8SkQv170lRBQCMpOXEHnzEhA&s=10",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBfsihCjIV5Ok98Nq7kuvkzQdj0amGaw4zHjtUfkyKgg&s=10"
+        ];
+
+        let index = 0;
+
+        let sliderImage = document.getElementById("sliderImage");
+        sliderImage.src = images[index];
+
+
+        function nextImage() {
+            index++;
+
+            if (index >= images.length) {
+                index = 0;
+            }
+
+            sliderImage.src = images[index];
+        }
+
+        function prevImage() {
+            index--;
+
+            if (index < 0) {
+                index = images.length - 1;
+            }
+
+            sliderImage.src = images[index];
+        }
+        setInterval(() => {
+            nextImage();
+        }, 3000);
+
+    </script>
+</body>
+
+</html>
