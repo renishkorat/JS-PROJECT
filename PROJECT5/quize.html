@@ -279,40 +279,33 @@
 
         //option click
 
-        const optionsTag =
-            document.querySelectorAll(".li1");
+        const optionsTag = document.querySelectorAll(".li1");
 
 
-        for (
-            let i = 0;
-            i < optionsTag.length;
-            i++
-        ) {
+        for (let i = 0; i < optionsTag.length; i++) {
 
             optionsTag[i]
-                .addEventListener(
-                    "click",
-                    function () {
+                .addEventListener("click", function () {
 
 
-                        // Remove selected
-                        
-
-                        for (let j = 0; j < optionsTag.length; j++) {
-                            optionsTag[j].classList.remove("selected");
-                        }
+                    // Remove selected
 
 
-                        // Select clicked option
-
-                        optionsTag[i].classList.add("selected");
-
-
-                        // Save selected index
-
-                        selected = i;
-
+                    for (let j = 0; j < optionsTag.length; j++) {
+                        optionsTag[j].classList.remove("selected");
                     }
+
+
+                    // Select clicked option
+
+                    optionsTag[i].classList.add("selected");
+
+
+                    // Save selected index
+
+                    selected = i;
+
+                }
                 );
 
         }
