@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QUIZ APP</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+        #parent {
+            width: 550px;
+            background: #ffffff;
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+
+        #question {
+            font-size: 25px;
+            color: #222;
+            margin-bottom: 25px;
+            line-height: 1.4;
+        }
+
+
+        #options {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .li1 {
+            padding: 16px 20px;
+            margin-bottom: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 17px;
+            color: #333;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #fff;
+        }
+
+        .li1:hover {
+            border-color: #667eea;
+            background: #f5f6ff;
+            transform: translateY(-2px);
+        }
+
+
+        .li1.selected {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+        }
+
+        /* Next Button */
+
+        button {
+            width: 100%;
+            padding: 15px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 12px;
+            background: #0432ff;
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #3a56f9;
+            transform: translateY(-2px);
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+
+        #top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        #timer {
+            background: #0834f9;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        #timer.denger {
+            background: red;
+        }
+
+
+        #result {
+            display: none;
+            text-align: center;
+            padding: 30px 10px;
+        }
+
+        #result h2 {
+            font-size: 30px;
+            color: #333;
+            margin-bottom: 25px;
+        }
+
+        #score {
+            font-size: 45px;
+            color: #667eea;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="parent">
+
+        <div id="quiz">
+            <div id="top">
+
+                <h3 id="questionNumber">
+                    Question 1 / 10
+                </h3>
+
+                <span id="timer">
+                    10s
+                </span>
+
+            </div>
+            <h3 id="question"></h3>
+            <ul id="options">
+                <li class="li1"></li>
+                <li class="li1"></li>
+                <li class="li1"></li>
+                <li class="li1"></li>
+            </ul>
+            <button onclick=nextButton()>Next Question</button>
+        </div>
+        <div id="result">
+            <h2>Quiz Completed 🎉</h2>
+            <h1 id="score"></h1>
+        </div>
+    </div>
+    <script>
+        const quizzes = [
+            {
+                id: 1,
+                question: "What is the capital of France?",
+                options: ["Berlin", "Madrid", "Paris", "Rome"],
+                correctOption: "Paris",
+                correctIndex: 2,
+            },
+            {
+                id: 2,
+                question: "Which planet is known as the Red Planet?",
+                options: ["Venus", "Mars", "Jupiter", "Saturn"],
+                correctOption: "Mars",
+                correctIndex: 1,
+            },
+            {
+                id: 3,
+                question: "What is the largest ocean on Earth?",
+                options: [
+                    "Atlantic Ocean",
+                    "Indian Ocean",
+                    "Arctic Ocean",
+                    "Pacific Ocean",
+                ],
+                correctOption: "Pacific Ocean",
+                correctIndex: 3,
+            },
+            {
+                id: 4,
+                question: "Who wrote the play 'Romeo and Juliet'?",
+                options: [
+                    "Charles Dickens",
+                    "William Shakespeare",
+                    "Jane Austen",
+                    "Mark Twain",
+                ],
+                correctOption: "William Shakespeare",
+                correctIndex: 1,
+            },
+            {
+                id: 5,
+                question: "What is the chemical symbol for gold?",
+                options: ["Ag", "Au", "Fe", "Cu"],
+                correctOption: "Au",
+                correctIndex: 1,
+            },
+            {
+                id: 6,
+                question: "Which gas do plants absorb from the atmosphere?",
+                options: ["Oxygen", "Nitrogen", "Carbon Dioxide", "Hydrogen"],
+                correctOption: "Carbon Dioxide",
+                correctIndex: 2,
+            },
+            {
+                id: 7,
+                question: "How many continents are there on Earth?",
+                options: ["5", "6", "7", "8"],
+                correctOption: "7",
+                correctIndex: 2,
+            },
+            {
+                id: 8,
+                question: "What is the smallest prime number?",
+                options: ["0", "1", "2", "3"],
+                correctOption: "2",
+                correctIndex: 2,
+            },
+            {
+                id: 9,
+                question: "Which animal is known as the 'King of the Jungle'?",
+                options: ["Tiger", "Elephant", "Lion", "Gorilla"],
+                correctOption: "Lion",
+                correctIndex: 2,
+            },
+            {
+                id: 10,
+                question: "What is the boiling point of water at sea level?",
+                options: ["90°C", "100°C", "110°C", "120°C"],
+                correctOption: "100°C",
+                correctIndex: 1,
+            },
+        ];
+
+        let count = 0;
+        let score = 0;
+        let timeout;
+        let time = 10;
+        let selected = false;
+        //next question
+        function nextQuestion(question) {
+            const div1 = document.getElementById("parent");
+            const optionsTag = document.getElementById("options")
+            if (div1 && optionsTag) {
+                const questionTag = document.getElementById("question")
+                questionTag.innerText = question.question
+
+                document.getElementById("questionNumber").innerText =
+                    `Question ${count + 1} / ${quizzes.length}`;
+
+                const optionTag = document.querySelectorAll(".li1")
+                for (let i = 0; i < question.options.length; i++) {
+                    optionTag[i].innerText = question.options[i]
+                    optionTag[i].classList.remove("selected")
+                }
+                selected = false
+
+                startTimer()
+            }
+        }
+
+        //option click
+
+        const optionsTag =
+            document.querySelectorAll(".li1");
+
+
+        for (
+            let i = 0;
+            i < optionsTag.length;
+            i++
+        ) {
+
+            optionsTag[i]
+                .addEventListener(
+                    "click",
+                    function () {
+
+
+                        // Remove selected
+                        
+
+                        for (let j = 0; j < optionsTag.length; j++) {
+                            optionsTag[j].classList.remove("selected");
+                        }
+
+
+                        // Select clicked option
+
+                        optionsTag[i].classList.add("selected");
+
+
+                        // Save selected index
+
+                        selected = i;
+
+                    }
+                );
+
+        }
+
+
+        //next question button
+
+        function nextButton() {
+            clearTimeout(timeout)
+
+
+            if (selected === quizzes[count].correctIndex) {
+                score++;
+
+            }
+
+
+            if (count < quizzes.length - 1) {
+                count++
+                nextQuestion(quizzes[count])
+
+            }
+            else {
+                showResult()
+            }
+        }
+
+
+        //timer
+
+        function startTimer() {
+            clearTimeout(timeout)
+
+            time = 10
+
+            const timerTag = document.getElementById("timer")
+            timerTag.innerText = time + "s"
+
+            timerTag.classList.remove("denger")
+
+            countdown()
+        }
+
+        function countdown() {
+            timeout = setTimeout(function () {
+                time--
+                const timerTag = document.getElementById("timer")
+                timerTag.innerText = time + "s"
+
+
+                if (time <= 5) {
+                    timerTag.classList.add("denger")
+                }
+
+                //time finish
+
+                if (time <= 0) {
+                    nextButton()
+                }
+                else {
+                    countdown()
+                }
+            }, 1000)
+        }
+
+        function showResult() {
+            clearTimeout(timeout)
+
+
+            //quize hide
+
+            document.getElementById("quiz").style.display = "none"
+
+            //show result
+
+            document.getElementById("result").style.display = "block"
+
+            // finel score
+
+            document.getElementById("score").innerText = `Your score: ${score}/${quizzes.length}`;
+        }
+        nextQuestion(quizzes[count]);
+    </script>
+</body>
+
+</html>
