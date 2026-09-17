@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WETHER APP</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #101828;
+        }
+
+        .weather-container {
+            width: 430px;
+            padding: 35px;
+            background: linear-gradient(145deg, #1e293b, #172033);
+            border-radius: 28px;
+            text-align: center;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .weather-container>h1 {
+            color: #ffffff;
+            font-size: 30px;
+            font-weight: 600;
+            letter-spacing: 1px;
+
+            margin-bottom: 28px;
+        }
+
+        .search-box {
+            display: flex;
+            gap: 10px;
+        }
+
+        #city {
+            width: 80%;
+            padding: 14px;
+            background: #273449;
+            color: #ffffff;
+            border: 1px solid #3b4b63;
+            border-radius: 12px;
+            font-size: 15px;
+            outline: none;
+            cursor: pointer;
+        }
+
+        /* 
+#city:focus {
+    border-color: #7c5cff;
+} */
+
+        .search-box button {
+            padding: 14px 22px;
+            background: #7c5cff;
+            color: #ffffff;
+            border: none;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .search-box button:hover {
+            background: #6847e8;
+            transform: translateY(-2px);
+        }
+
+        #nameerror {
+            min-height: 20px;
+            color: #ff6b6b;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        .weather-flow {
+            margin-top: 20px;
+            padding: 28px 20px;
+            background: #ffffff;
+            border-radius: 22px;
+        }
+
+        /* City Name */
+        #cityname {
+            color: #172033;
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        #icon {
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #icon img {
+            width: 105px;
+            height: 105px;
+        }
+
+        #temperature {
+            color: #ff8a00;
+
+            font-size: 52px;
+            font-weight: 700;
+
+            margin: 5px 0;
+        }
+
+        #weahtercondition {
+            color: #667085;
+
+            font-size: 18px;
+
+            text-transform: capitalize;
+
+            margin-bottom: 22px;
+        }
+
+        #humidity,
+        #wind {
+            display: inline-block;
+            width: 44%;
+            padding: 13px 5px;
+            background: #f4f6fa;
+            border-radius: 12px;
+            color: #344054;
+            font-size: 15px;
+            margin: 5px 2%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="weather-container">
+        <h1>WETHER APP</h1>
+
+        <div class="search-box">
+            <select id="city">
+                <option value="">Select City</option>
+                <option value="Ahmedabad">Ahmedabad</option>
+                <option value="Surat">Surat</option>
+                <option value="Rajkot">Rajkot</option>
+                <option value="Vadodara">Vadodara</option>
+                <option value="Mumbai">Mumbai</option>
+                <option value="Delhi">Delhi</option>
+                <option value="Pune">Pune</option>
+                <option value="Jaipur">Jaipur</option>
+            </select>
+            <button onclick="weather()">Search</button>
+        </div>
+        <p id="nameerror"></p>
+
+        <div class="weather-flow">
+            <h2 id="cityname"></h2>
+            <div id="icon"></div>
+            <h1 id="temperature"></h1>
+            <p id="weahtercondition"></p>
+            <p id="humidity"></p>
+            <p id="wind"></p>
+
+        </div>
+    </div>
+
+    <script src="wether.js"></script>
+
+</body>
+
+</html>
