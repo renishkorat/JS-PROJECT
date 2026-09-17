@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Task Manager</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0f172a, #1e293b, #312e81);
+            color: #f8fafc;
+            padding: 40px 20px;
+        }
+
+        /* Main Container */
+        .container {
+            width: 100%;
+            max-width: 850px;
+            margin: auto;
+            padding: 35px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 24px;
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.35);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 38px;
+            margin-bottom: 30px;
+            letter-spacing: 1px;
+            color: #a78bfa;
+
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            outline: none;
+            background: rgba(15, 23, 42, 0.75);
+            color: #fff;
+            font-size: 15px;
+            transition: 0.3s ease;
+        }
+
+        input::placeholder,
+        textarea::placeholder {
+            color: #94a3b8;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            border-color: #818cf8;
+            box-shadow: 0 0 0 3px rgba(129, 140, 248, 0.15);
+            transform: translateY(-1px);
+        }
+
+        textarea {
+            min-height: 110px;
+            resize: vertical;
+        }
+
+        select option {
+            background: #1e293b;
+            color: white;
+        }
+
+        button {
+            border: none;
+            padding: 14px 20px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s ease;
+            box-shadow: 0 8px 20px rgba(99, 102, 241, 0.3);
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 28px rgba(99, 102, 241, 0.45);
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        #search {
+            width: 65%;
+            margin-top: 10px;
+        }
+
+        #filterPriority {
+            width: 32%;
+            margin-left: 2%;
+        }
+
+        #taskList {
+            margin-top: 25px;
+            display: grid;
+            gap: 15px;
+        }
+
+        .task-card {
+               background: #334155;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 15px;
+    padding: 20px;
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+
+        }
+
+        .task-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(129, 140, 248, 0.5);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+        }
+
+        .task-card h3 {
+           color: white;
+    font-size: 20px;
+    margin-bottom: 8px;
+        }
+
+        .task-card p {
+          color: #e2e8f0;
+    margin: 5px 0;
+    line-height: 1.5;
+        }
+
+
+        .priority {
+            display: inline-block;
+    background: #64748b;
+    color: white;
+    padding: 3px 10px;
+    border-radius: 6px;
+    font-size: 13px;
+    margin-left: 3px;
+        }
+
+
+
+        .task-card button {
+               padding: 10px 18px;
+    margin-top: 12px;
+    margin-right: 8px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: white;
+    cursor: pointer;
+    font-weight: 600;
+
+        }
+
+        #taskid {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Task Manager</h1>
+
+
+        <form onsubmit="submitForm(event)">
+
+            <input type="hidden" id="taskid">
+
+
+            <input type="text" id="title" placeholder="Enter Task Title">
+
+
+            <textarea id="description" placeholder="Enter Description"></textarea>
+
+
+            <input type="date" id="duedate">
+
+
+            <select id="priority">
+
+                <option value="low">Low</option>
+
+                <option value="medium">Medium</option>
+
+                <option value="high">High</option>
+
+            </select>
+
+
+            <button type="submit" id="summitbtn">
+                Add Task
+            </button>
+
+        </form>
+
+
+        <br>
+
+
+        <input type="text" id="search" placeholder="Search Task" oninput="searchTasks()">
+
+
+        <select id="filterPriority" onchange="filterTasks()">
+
+            <option value="all">All</option>
+
+            <option value="low">Low</option>
+
+            <option value="medium">Medium</option>
+
+            <option value="high">High</option>
+
+        </select>
+
+
+        <div id="taskList"></div>
+
+    </div>
+
+
+    <script src="task.js"></script>
+
+</body>
+
+</html>
