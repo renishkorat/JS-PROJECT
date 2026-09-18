@@ -32,6 +32,8 @@
 
             <select id="priority">
 
+                <option value="">priority</option>
+
                 <option value="low">Low</option>
 
                 <option value="medium">Medium</option>
@@ -54,7 +56,7 @@
         <input type="text" id="search" placeholder="Search Task" oninput="searchTasks()">
 
 
-        <select id="filterPriority" onchange="filterTasks()">
+        <select id="filterPriority" onchange="filterTasks()" class="pr">
 
             <option value="all">All</option>
 

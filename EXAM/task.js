@@ -19,6 +19,11 @@ function addTask() {
         return;
     }
 
+    if(priority===""){
+        alert("Please select priority");
+        return;
+    }
+
     let task = {
         id: Date.now(),
         title: title,
