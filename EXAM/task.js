@@ -51,7 +51,7 @@ function displayTasks(taskArray = tasks) {
 
         let div = document.createElement("div");
 
-        div.className = "task";
+        div.className = "task-card";
 
         div.innerHTML = `
             <h3>${task.title}</h3>
